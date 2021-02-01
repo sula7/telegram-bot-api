@@ -61,10 +61,11 @@ func NewBotAPIWithClient(token, apiEndpoint string, client HttpClient) (*BotAPI,
 		Client:          client,
 		Buffer:          100,
 		shutdownChannel: make(chan interface{}),
+		apiEndpoint:     APIEndpoint,
 	}
 
-	if len(apiEndpoint) <= 0 {
-		bot.apiEndpoint = APIEndpoint
+	if len(apiEndpoint) >= 0 {
+		bot.apiEndpoint = apiEndpoint
 	}
 
 	self, err := bot.GetMe()
