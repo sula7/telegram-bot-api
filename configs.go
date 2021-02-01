@@ -2,13 +2,14 @@ package tgbotapi
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/url"
 	"strconv"
 )
 
 // Telegram constants
-const (
+var (
 	// APIEndpoint is the endpoint for all API methods,
 	// with formatting for Sprintf.
 	APIEndpoint = "https://api.telegram.org/bot%s/%s"
@@ -1363,4 +1364,8 @@ func (config DiceConfig) values() (url.Values, error) {
 // method returns Telegram API method name for sending Dice.
 func (config DiceConfig) method() string {
 	return "sendDice"
+}
+
+func SwitchAPIEndpointToLocal(host, port string) {
+	APIEndpoint = fmt.Sprintf("http://%s:%s", host, port) + "/bot%s/%s"
 }

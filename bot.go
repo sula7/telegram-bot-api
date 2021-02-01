@@ -1093,3 +1093,13 @@ func EscapeText(parseMode string, text string) string {
 
 	return replacer.Replace(text)
 }
+
+// LogOut log out from the cloud Bot API server before launching the bot locally
+func (bot *BotAPI) LogOut() error {
+	_, err := bot.MakeRequest("logOut", nil)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
