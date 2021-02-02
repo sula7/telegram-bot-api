@@ -64,7 +64,7 @@ func NewBotAPIWithClient(token, apiEndpoint string, client HttpClient) (*BotAPI,
 		apiEndpoint:     APIEndpoint,
 	}
 
-	if len(apiEndpoint) >= 0 {
+	if len(apiEndpoint) > 0 {
 		bot.apiEndpoint = apiEndpoint
 	}
 
@@ -76,6 +76,16 @@ func NewBotAPIWithClient(token, apiEndpoint string, client HttpClient) (*BotAPI,
 	bot.Self = self
 
 	return bot, nil
+}
+
+// LogOut log out from the cloud Bot API server before launching the bot locally
+func (bot *BotAPI) LogOut() error {
+	_, err := bot.MakeRequest("logOut", nil)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 // SetAPIEndpoint add telegram apiEndpont to Bot
@@ -1097,12 +1107,3 @@ func EscapeText(parseMode string, text string) string {
 	return replacer.Replace(text)
 }
 
-// LogOut log out from the cloud Bot API server before launching the bot locally
-func (bot *BotAPI) LogOut() error {
-	_, err := bot.MakeRequest("logOut", nil)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
