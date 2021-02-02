@@ -48,7 +48,7 @@ func NewBotAPI(token string) (*BotAPI, error) {
 //
 // It requires a token, provided by @BotFather on Telegram and API endpoint.
 func NewBotAPIWithAPIEndpoint(token, apiEndpoint string) (*BotAPI, error) {
-	return NewBotAPIWithClient(token, apiEndpoint + "/bot%s/%s", &http.Client{})
+	return NewBotAPIWithClient(token, apiEndpoint+"/bot%s/%s", &http.Client{})
 }
 
 // NewBotAPIWithClient creates a new BotAPI instance
@@ -1106,4 +1106,3 @@ func EscapeText(parseMode string, text string) string {
 
 	return replacer.Replace(text)
 }
-

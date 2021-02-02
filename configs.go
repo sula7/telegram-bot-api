@@ -2,7 +2,6 @@ package tgbotapi
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"net/url"
 	"strconv"
