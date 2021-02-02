@@ -48,7 +48,7 @@ func NewBotAPI(token string) (*BotAPI, error) {
 //
 // It requires a token, provided by @BotFather on Telegram and API endpoint.
 func NewBotAPIWithAPIEndpoint(token, apiEndpoint string) (*BotAPI, error) {
-	return NewBotAPIWithClient(token, apiEndpoint, &http.Client{})
+	return NewBotAPIWithClient(token, apiEndpoint + "/bot%s/%s", &http.Client{})
 }
 
 // NewBotAPIWithClient creates a new BotAPI instance
@@ -65,7 +65,7 @@ func NewBotAPIWithClient(token, apiEndpoint string, client HttpClient) (*BotAPI,
 	}
 
 	if len(apiEndpoint) > 0 {
-		bot.apiEndpoint = apiEndpoint
+		bot.apiEndpoint = apiEndpoint + "/bot%s/%s"
 	}
 
 	self, err := bot.GetMe()
@@ -90,7 +90,7 @@ func (bot *BotAPI) LogOut() error {
 
 // SetAPIEndpoint add telegram apiEndpont to Bot
 func (bot *BotAPI) SetAPIEndpoint(apiEndpoint string) {
-	bot.apiEndpoint = apiEndpoint
+	bot.apiEndpoint = apiEndpoint + "/bot%s/%s"
 }
 
 // MakeRequest makes a request to a specific endpoint with our token.

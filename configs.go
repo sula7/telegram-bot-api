@@ -1365,7 +1365,3 @@ func (config DiceConfig) values() (url.Values, error) {
 func (config DiceConfig) method() string {
 	return "sendDice"
 }
-
-func SwitchAPIEndpointToLocal(host, port string) {
-	APIEndpoint = fmt.Sprintf("http://%s:%s", host, port) + "/bot%s/%s"
-}
